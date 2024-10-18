@@ -1,6 +1,11 @@
 const express = require('express');
+const cors = require('cors');  // Import the CORS package
+
 const app = express();
 const port = process.env.PORT || 5000;
+
+// Enable CORS
+app.use(cors());
 
 // Basic route
 app.get('/', (req, res) => {
@@ -11,7 +16,6 @@ app.get('/', (req, res) => {
 app.listen(port, async () => {
   console.log(`Server is running on port ${port}`);
 
-  // Dynamically import the open package to avoid the CommonJS/ESM issue
   const { default: open } = await import('open');
-  open(`http://localhost:${port}`);  // Automatically open the browser
+  open(`http://localhost:${port}`);
 });
